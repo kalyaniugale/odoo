@@ -1,8 +1,7 @@
 
-
-````md
+---
 ## Backend Setup
-
+```bash
 cd backend
 npm install
 ````
@@ -27,7 +26,7 @@ npm install
 npm run dev
 ```
 
-```
+
 
 ---
 
