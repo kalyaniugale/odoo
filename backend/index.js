@@ -1,11 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config(); 
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./src/config/connectDB.js";
 import authRouter from "./src/routes/authRoute.js";
+import passport from "passport";
+import "./src/config/passport.js";
+import { googleSuccess } from "./src/controllers/authController.js";
 
-dotenv.config();
+
 const app=express();
 
 const port = process.env.PORT;
@@ -21,7 +25,12 @@ app.use(cors({
 app.get('/',(req,res)=>{
     res.send("hello from server ")
 })
-
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { session: false }),
+  googleSuccess
+);
+app.use(passport.initialize());
 app.use('/api/auth',authRouter)
 
 app.listen(port,()=>{

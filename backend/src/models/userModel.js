@@ -15,11 +15,12 @@ const userSchema=new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
     },
+	googleId: String,
     role:{
         type:String,
         enum:["Role-1","Role-2"],
+		default: "Role-1",
         required:true
     },
     photoUrl:{
